@@ -1,0 +1,86 @@
+#main_heading {
+    margin-top: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Helvetica Neue, Ubuntu, sans-serif;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="button"] {
+    width: 60%;
+    background-color: #4a73ba;
+    color: white;
+    padding: 14px 20px;
+    margin: 20px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #37578d;
+}
+
+#formblock {
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#collapseWidthExample {
+    z-index: 10;
+}
+
+.nav-link:hover {
+    background-color: #0d6efd!important;
+}
+
+#wholebody {
+    position: absolute;
+    z-index: 10;
+}
+
+.stopscroll{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.fadeout_block{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.349);
+    top: 2.9rem;
+    display: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+/* .background{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+    background-image: url('../Images\ and\ videos/img1.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+} */
