@@ -1,0 +1,272 @@
+<html>
+
+<head>
+	<title>Doctor Details</title>
+	<link rel="icon" href="blockchain.png" type="image/icon type">
+	<link rel="stylesheet" href="./Style/hospital.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+	<div id="fadeout" class="fadeout_block"></div>
+	<p id="upperbar" style="background-color: #212529; padding: 1rem; margin: 0rem;">
+		<button id="side-barbutton" class="btn" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+			<i class="fa-solid fa-bars fa-xl" style="color: #4a73ba;"></i>
+		</button>
+	</p>
+	<div id="wholeBody">
+		<div class="collapse collapse-horizontal" id="collapseWidthExample" style="height: 102vh;">
+			<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark card-body" style="width: 400px; height: 92%;">
+				<a href="./hospital.html"
+					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+					<svg class="bi pe-none me-2" width="40" height="32">
+						<use xlink:href="#bootstrap"></use>
+					</svg>
+					<span class="fs-4">Secured Health Data</span>
+				</a>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					<li class="nav-item">
+						<a href="doctor.html" class="nav-link text-white" aria-current="page">
+							<svg class="bi pe-none me-2" width="16" height="16">
+								<use xlink:href="#home"></use>
+							</svg>
+							Doctor Registration
+						</a>
+					</li>
+					<li>
+						<a href="patient.html" class="nav-link text-white">
+							<svg class="bi pe-none me-2" width="16" height="16">
+								<use xlink:href="#speedometer2"></use>
+							</svg>
+							Patient Registration
+						</a>
+					</li>
+					<li>
+						<a href="./record.html" class="nav-link text-white">
+							<svg class="bi pe-none me-2" width="16" height="16">
+								<use xlink:href="#grid"></use>
+							</svg>
+							Make Medical Record
+						</a>
+					</li>
+					<li>
+						<a href="./patient_examine.html" class="nav-link text-white">
+							<svg class="bi pe-none me-2" width="16" height="16">
+								<use xlink:href="#people-circle"></use>
+							</svg>
+							Patient Examine
+						</a>
+					</li>
+				</ul>
+				<hr>
+				<div class="dropdown">
+					<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						<strong>More Features</strong>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+						<li><a class="dropdown-item" href="./hospital_details.html">Hospital's Details</a></li>
+						<li><a class="dropdown-item" href="./doctor_details.html">Doctor's Details</a></li>
+						<li><a class="dropdown-item" href="./patient_details.html">Patient's Detail</a></li>
+						<li><a class="dropdown-item" href="./examine_details.html">Examine Detail</a></li>
+						<li><a class="dropdown-item" href="./record_details.html">Record Detail</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h1 id="main_heading"> Display Doctor Details</h1>
+	<script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
+	<script>
+
+		var account;
+		window.addEventListener('load', async () => {
+
+
+			if (typeof window.ethereum !== 'undefined') {
+				console.log("MetaMask is Available :) !");
+			}
+
+			// Modern DApp browsers
+			if (window.ethereum) {
+				window.web3 = new Web3(ethereum);
+
+				// To prevent the page reloading when the MetaMask network changes
+				ethereum.autoRefreshOnNetworkChange = false;
+
+				// To Capture the account details from MetaMask
+				const accounts = await ethereum.enable();
+				account = accounts[0];
+
+			}
+			// Legacy DApp browsers
+			else if (window.web3) {
+				window.web3 = new Web3(web3.currentProvider);
+				//window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+			// Non-DApp browsers
+			else {
+				console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+
+		});
+
+		var abi = [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "doctor_id",
+						"type": "uint16"
+					}
+				],
+				"name": "retreive_doctor_details",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "doctor_id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "string",
+						"name": "_doctor_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_doctor_specialisation",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_doctor_ph_no",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_doctor_address",
+						"type": "string"
+					}
+				],
+				"name": "store_doctor_details",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		]
+		var contractaddress = '0x516E5882A0983022Ec34A3fA87f7AA24295Da2b4';
+
+		function add_details() {
+			var myContract = new web3.eth.Contract(abi, contractaddress, { from: account, gasPrice: '5000000', gas: '500000' });
+			var ds1 = document.getElementById("spec").value;
+			var ds2 = document.getElementById("pno").value;
+			var ds3 = document.getElementById("addr").value;
+			var tname = document.getElementById("name1").value;
+			var id = document.getElementById("id1").value;
+			var result = myContract.methods.store_doctor_details(id, tname, ds1, ds2, ds3).send(function (err, result) {
+
+				if (err) { console.log(err); }
+				if (result) { document.getElementById("result").innerHTML = result; }
+
+			});
+		}
+		function show_details() {
+			var myContract = new web3.eth.Contract(abi, contractaddress, { from: account, gasPrice: '5000000', gas: '500000' });
+			var idd = document.getElementById("tid").value;
+			var result = myContract.methods.retreive_doctor_details(idd).call(function (err, result) {
+
+				if (err) { console.log(err); }
+				if (result) {
+					document.getElementById("get_name").innerHTML = result[0];
+					document.getElementById("get_spec").innerHTML = result[1];
+					document.getElementById("get_pno").innerHTML = result[2];
+					document.getElementById("get_addr").innerHTML = result[3];
+				}
+
+			});
+		}
+	</script>
+	<div id="formblock">
+		<form>
+			<table style="width:100%">
+				<tr>
+					<td>Enter Doctor Id:</td>
+					<td><input type="text" id="tid" name="tid"></td>
+				</tr>
+
+				<tr>
+					<td> Doctor Name:</td>
+					<td>
+						<div id="get_name"></div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Doctor Specification:</td>
+					<td>
+						<div id="get_spec"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>Doctor Phone Number:</td>
+					<td>
+						<div id="get_pno"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>Doctor Address:</td>
+					<td>
+						<div id="get_addr"></div>
+					</td>
+				</tr>
+			</table>
+			<input type="button" onclick="show_details()" value="Get Details"
+				style="margin-left: 20%; margin-top: 40px;">
+		</form>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+		crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/24c1065ad6.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
